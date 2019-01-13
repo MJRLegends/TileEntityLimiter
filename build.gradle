@@ -1,29 +1,26 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
+
+apply plugin: 'forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
-version = "1.12.2-1.0.0"
+version = "1.7.10-1.0.0"
 group = "com.mjr.tileentitylimiter" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "TileEntityLimiter"
 
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = "1.12.2-14.23.5.2806"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "run"
-    mappings = "snapshot_20171003"
 }
 
 dependencies {

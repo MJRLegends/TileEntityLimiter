@@ -7,10 +7,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = TileEntityLimiter.MODID, version = TileEntityLimiter.VERSION, dependencies = "required-after:forge@[13.20.1.2513,);",serverSideOnly = true)
+@Mod(modid = TileEntityLimiter.MODID, version = TileEntityLimiter.VERSION, dependencies = "required-after:forge@[13.20.1.2513,);",serverSideOnly = true, acceptableRemoteVersions = "*")
 public class TileEntityLimiter {
 	public static final String MODID = "tileentitylimiter";
-	public static final String VERSION = "1.11.2-1.0.0";
+	public static final String VERSION = "1.11.2-1.0.1";
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

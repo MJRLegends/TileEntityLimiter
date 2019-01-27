@@ -3,11 +3,16 @@ buildscript {
         jcenter()
         maven { url = "https://files.minecraftforge.net/maven" }
     }
+	maven {
+		url 'https://plugins.gradle.org/m2/'
+	}
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.matthewprenger.cursegradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
@@ -44,3 +49,31 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    onlyIf {
+        project.hasProperty('keyStore')
+    }
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+}
+
+curseforge {
+	apiKey = project.findProperty("curseforge_key")
+	project {
+		id = "311347"
+		releaseType = "release"
+		addGameVersion "${minecraft_version}"
+		mainArtifact(jar) {
+
+		}
+	}
+}
+
+build.dependsOn signJar
+tasks.build.dependsOn signJar
+tasks.curseforge.dependsOn build

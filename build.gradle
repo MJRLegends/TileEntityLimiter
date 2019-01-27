@@ -1,3 +1,4 @@
+def minecraft_version="1.8.9"
 buildscript {
     repositories {
         jcenter()
@@ -54,16 +55,16 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
     onlyIf {
         project.hasProperty('keyStore')
     }
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
+    keyStore = project.getProperty('keyStore')
+    alias = project.getProperty('keyStoreAlias')
+    storePass = project.getProperty('keyStorePass')
+    keyPass = project.getProperty('keyStoreKeyPass')
     inputFile = jar.archivePath
     outputFile = jar.archivePath
 }
 
 curseforge {
-	apiKey = project.findProperty("curseforge_key")
+	apiKey = project.getProperty("curseforge_key")
 	project {
 		id = "311347"
 		releaseType = "release"

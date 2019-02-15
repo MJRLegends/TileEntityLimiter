@@ -1,32 +1,25 @@
-eclipse/
-bin/
-.gradle/
-gradle/
-gradlew
-gradlew.bat
-TexturesFolder/
-*.jar
-*.exe
-.settings/org.eclipse.jdt.ui.prefs
-saves/
-logs/
-config/
-usernamecache.json
-options.txt
-.settings/
-sh.exe.stackdump
-Textures ff/
-Galacticraft Development Files/
-Wiki Textures/
-ExtraPlanets Server Test/
-*.schematic
-*.rar
-asm/
-Galacticraft Source/
-run/
+# eclipse
+bin
 *.launch
-build/
-*.zip
+.settings
+.metadata
 .classpath
 .project
-gradle.properties
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# Files from Forge MDK
+forge*changelog.txt

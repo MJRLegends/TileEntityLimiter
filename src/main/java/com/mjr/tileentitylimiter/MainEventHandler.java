@@ -1,31 +1,29 @@
 package com.mjr.tileentitylimiter;
 
-import java.util.Arrays;
-
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class MainEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onBlockPlacement(BlockEvent.PlaceEvent event) {
-		if (Config.enablePerChunkLimit) {
+		if (Config.SERVER.enablePerChunkLimit.get()) {
 			if (event.getBlockSnapshot().getTileEntity() != null) {
-				if (!Arrays.asList(Config.tileEntityBlockList).contains(event.getBlockSnapshot().getRegistryName().toString())) {
-					if (event.getWorld().getChunkFromBlockCoords(event.getPos()).getTileEntityMap().size() > Config.perChunkLimit) {
+				if (!Config.SERVER.tileEntityBlockList.get().contains(event.getBlockSnapshot().getRegistryName().toString())) {
+					if (event.getWorld().getWorld().getChunk(event.getPos()).getTileEntityMap().size() > Config.SERVER.perChunkLimit.get()) {
 						event.getPlayer().sendMessage(new TextComponentString(TextFormatting.RED + "Sorry, Tile entity limit per chunk has been reached!"));
 						event.setCanceled(true);
 					}
 				}
 			}
 		}
-		if (Config.enablePerChunkWorld) {
+		if (Config.SERVER.enablePerChunkWorld.get()) {
 			if (event.getBlockSnapshot().getTileEntity() != null) {
-				if (!Arrays.asList(Config.tileEntityBlockList).contains(event.getBlockSnapshot().getRegistryName().toString())) {
-					if (event.getWorld().loadedTileEntityList.size() > Config.perChunkWorld) {
+				if (!Config.SERVER.tileEntityBlockList.get().contains(event.getBlockSnapshot().getRegistryName().toString())) {
+					if (event.getWorld().getWorld().loadedTileEntityList.size() > Config.SERVER.perChunkWorld.get()) {
 						event.getPlayer().sendMessage(new TextComponentString(TextFormatting.RED + "Sorry, Tile entity limit per world has been reached!"));
 						event.setCanceled(true);
 					}

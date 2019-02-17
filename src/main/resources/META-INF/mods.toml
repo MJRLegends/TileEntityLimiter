@@ -1,21 +1,26 @@
-modLoader="javafml" #mandatory
-loaderVersion="[24,)" #mandatory (24 is current forge version)
-issueTrackerURL="https://github.com/MJRLegends/TileEntityLimiter/issues" #optional
-displayURL="https://minecraft.curseforge.com/projects/tileentitylimiter" #optional
-#logoFile="examplemod.png" #optional
-credits="MJRLegends for making the mod" #optional
-authors="MJRLegends" #optional
-[[mods]] #mandatory
-modId="tileentitylimiter" #mandatory
-version="1.0.0" #mandatory
-displayName="TileEntityLimiter" #mandatory
-#updateJSONURL="http://myurl.me/" #optional
+modLoader="javafml"
+loaderVersion="[25,)"
+issueTrackerURL="https://github.com/MJRLegends/TileEntityLimiter/issues"
+displayURL="https://minecraft.curseforge.com/projects/tileentitylimiter"
+credits="MJRLegends for making the mod"
+authors="MJRLegends"
+[[mods]]
+modId="tileentitylimiter"
+version="1.0.0"
+displayName="TileEntityLimiter"
 description='''
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.tileentitylimiter]] #optional
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[24,)" #mandatory
+[[dependencies.tileentitylimiter]]
+    modId="forge"
+    mandatory=true
+    versionRange="[25,)"
+    ordering="NONE"
+    side="BOTH"	
+
+[[dependencies.tileentitylimiter]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
     ordering="NONE"
     side="BOTH"

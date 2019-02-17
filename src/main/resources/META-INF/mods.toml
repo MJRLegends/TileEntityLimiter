@@ -1,14 +1,15 @@
 modLoader="javafml"
 loaderVersion="[25,)"
 issueTrackerURL="https://github.com/MJRLegends/TileEntityLimiter/issues"
-displayURL="https://minecraft.curseforge.com/projects/tileentitylimiter"
-credits="MJRLegends for making the mod"
-authors="MJRLegends"
 [[mods]]
 modId="tileentitylimiter"
 version="1.0.0"
 displayName="TileEntityLimiter"
+displayURL="https://minecraft.curseforge.com/projects/tileentitylimiter"
+credits="MJRLegends for making the mod"
+authors="MJRLegends"
 description='''
+A very small server side only to limit the amount of tile entities per chunk & world.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.tileentitylimiter]]

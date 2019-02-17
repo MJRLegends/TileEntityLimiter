@@ -1,7 +1,7 @@
 [
 {
   "name": "TileEntityLimiter",
-  "description": "",
+  "description": "A very small server side only to limit the amount of tile entities per chunk & world.",
   "mcversion": "1.11.2",
   "authorList": ["MJRLegends"],
   "credits": "MJRLegends for making the mod"

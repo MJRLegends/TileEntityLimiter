@@ -13,12 +13,7 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class Config {
 
-	// perChunkLimit = config.get(Configuration.CATEGORY_GENERAL, "Amount of Tile Entities allowed per chunk", 20, "Default: 0 | Will stop block placement if tile entity limit has been exceeded").getInt(20);
-	// perChunkWorld = config.get(Configuration.CATEGORY_GENERAL, "Amount of Tile Entities allowed per world", 20000, "Default: 0 | Will stop block placement if tile entity limit has been exceeded").getInt(20000);
-	// enablePerChunkLimit = config.get(Configuration.CATEGORY_GENERAL, "Enable amount of Tile Entities allowed per chunk", true, "Default: true").getBoolean(true);
-	// enablePerChunkWorld = config.get(Configuration.CATEGORY_GENERAL, "Enable amount of Tile Entities allowed per world", true, "Default: true").getBoolean(true);
-	// tileEntityBlockList = config.get("List of Tile Entities to not get counted by limit checker", Configuration.CATEGORY_GENERAL, new String[0], "Format: modid:name | Example: minecraft:furnace").getStringList();
-    static final ForgeConfigSpec serverSpec;
+	static final ForgeConfigSpec serverSpec;
     public static final Server SERVER;
 
     static {

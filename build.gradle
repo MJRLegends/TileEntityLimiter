@@ -8,8 +8,11 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+import net.minecraftforge.gradle.common.task.SignJar
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
+//apply plugin: 'com.matthewprenger.cursegradle'
 
 version = '1.0.0'
 group = 'com.mjrlegends.tileentitylimiter' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -55,3 +58,31 @@ jar {
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
     }
 }
+
+task signJar(type: SignJar, dependsOn: reobfJar) {
+    onlyIf {
+        project.hasProperty('keyStore')
+    }
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+}
+
+/*curseforge {
+	apiKey = project.findProperty("curseforge_key")
+	project {
+		id = "311347"
+		releaseType = "release"
+		addGameVersion "${minecraft_version}"
+		mainArtifact(jar) {
+
+		}
+	}
+}*/
+
+build.dependsOn signJar
+tasks.build.dependsOn signJar
+//tasks.curseforge.dependsOn build

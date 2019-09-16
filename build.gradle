@@ -1,3 +1,4 @@
+def minecraft_version="1.13.2"
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
@@ -6,13 +7,14 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 import net.minecraftforge.gradle.common.task.SignJar
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-//apply plugin: 'com.matthewprenger.cursegradle'
+apply plugin: 'com.matthewprenger.cursegradle'
 
 version = '1.0.0'
 group = 'com.mjrlegends.tileentitylimiter' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -74,7 +76,7 @@ jar {
     }
 }
 
-/*task signJar(type: SignJar, dependsOn: reobfJar) {
+task signJar(type: SignJar, dependsOn: reobfJar) {
     onlyIf {
         project.hasProperty('keyStore')
     }
@@ -84,9 +86,9 @@ jar {
     keyPass = project.findProperty('keyStoreKeyPass')
     inputFile = jar.archivePath
     outputFile = jar.archivePath
-}*/
+}
 
-/*curseforge {
+curseforge {
 	apiKey = project.findProperty("curseforge_key")
 	project {
 		id = "311347"
@@ -96,8 +98,8 @@ jar {
 
 		}
 	}
-}*/
+}
 
-//build.dependsOn signJar
-//tasks.build.dependsOn signJar
-//tasks.curseforge.dependsOn build
+build.dependsOn signJar
+tasks.build.dependsOn signJar
+tasks.curseforge.dependsOn build

@@ -21,29 +21,44 @@ archivesBaseName = 'TileEntityLimiter'
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    mappings channel: 'snapshot', version: '20180921-1.13'
-    runs {
-        client = {
-            // recommended logging data for a userdev environment
-            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
-            // recommended logging level for the console
-            properties 'forge.logging.console.level': 'debug'
-            workingDirectory project.file('run').canonicalPath
-            source sourceSets.main
+    	mappings channel: 'snapshot', version: '20180921-1.13'
+        runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                tileentitylimiter {
+                    source sourceSets.main
+                }
+            }
         }
-        server = {
-            // recommended logging data for a userdev environment
-            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
-            // recommended logging level for the console
-            properties 'forge.logging.console.level': 'debug'
-            workingDirectory project.file('run').canonicalPath
-            source sourceSets.main
+
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                tileentitylimiter {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.13.2-25.0.22'
+    minecraft 'net.minecraftforge:forge:1.13.2-25.0.219'
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -59,7 +74,7 @@ jar {
     }
 }
 
-task signJar(type: SignJar, dependsOn: reobfJar) {
+/*task signJar(type: SignJar, dependsOn: reobfJar) {
     onlyIf {
         project.hasProperty('keyStore')
     }
@@ -69,7 +84,7 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
     keyPass = project.findProperty('keyStoreKeyPass')
     inputFile = jar.archivePath
     outputFile = jar.archivePath
-}
+}*/
 
 /*curseforge {
 	apiKey = project.findProperty("curseforge_key")
@@ -83,6 +98,6 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 	}
 }*/
 
-build.dependsOn signJar
-tasks.build.dependsOn signJar
+//build.dependsOn signJar
+//tasks.build.dependsOn signJar
 //tasks.curseforge.dependsOn build

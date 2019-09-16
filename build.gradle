@@ -12,12 +12,14 @@ buildscript {
 		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
     }
 }
+import net.minecraftforge.gradle.common.task.SignJar
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.matthewprenger.cursegradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.12.2-1.0.2"
+version = "1.12.2-1.0.3"
 group = "com.mjr.tileentitylimiter" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "TileEntityLimiter"
 
@@ -51,7 +53,7 @@ processResources {
     }
 }
 
-task signJar(type: SignJar, dependsOn: reobfJar) {
+task signJar(type: SignJar) {
     onlyIf {
         project.hasProperty('keyStore')
     }
@@ -63,7 +65,7 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
     outputFile = jar.archivePath
 }
 
-curseforge {
+/*curseforge {
 	apiKey = project.findProperty("curseforge_key")
 	project {
 		id = "311347"
@@ -73,8 +75,8 @@ curseforge {
 
 		}
 	}
-}
+}*/
 
 build.dependsOn signJar
 tasks.build.dependsOn signJar
-tasks.curseforge.dependsOn build
+//tasks.curseforge.dependsOn build

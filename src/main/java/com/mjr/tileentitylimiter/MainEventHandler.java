@@ -11,7 +11,7 @@ public class MainEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onBlockPlacement(EntityPlaceEvent event) {
 		if (Config.SERVER.enablePerChunkLimit.get()) {
-			if (event.getBlockSnapshot().getTileEntity() != null) {
+			if (event.getBlockSnapshot().getCurrentBlock().getBlock().hasTileEntity()) {
 				if (!Config.SERVER.tileEntityBlockList.get().contains(event.getBlockSnapshot().getRegistryName().toString())) {
 					if (event.getWorld().getWorld().getChunk(event.getPos()).getTileEntityMap().size() > Config.SERVER.perChunkLimit.get()) {
 						event.getEntity().sendMessage(new TextComponentString(TextFormatting.RED + "Sorry, Tile entity limit per chunk has been reached!"));
@@ -21,7 +21,7 @@ public class MainEventHandler {
 			}
 		}
 		if (Config.SERVER.enablePerChunkWorld.get()) {
-			if (event.getBlockSnapshot().getTileEntity() != null) {
+			if (event.getBlockSnapshot().getCurrentBlock().getBlock().hasTileEntity()) {
 				if (!Config.SERVER.tileEntityBlockList.get().contains(event.getBlockSnapshot().getRegistryName().toString())) {
 					if (event.getWorld().getWorld().loadedTileEntityList.size() > Config.SERVER.perChunkWorld.get()) {
 						event.getEntity().sendMessage(new TextComponentString(TextFormatting.RED + "Sorry, Tile entity limit per world has been reached!"));

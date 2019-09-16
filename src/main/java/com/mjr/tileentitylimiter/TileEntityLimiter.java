@@ -17,6 +17,7 @@ public class TileEntityLimiter {
 
 	public TileEntityLimiter() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
+		MinecraftForge.EVENT_BUS.register(this);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
 	}
 

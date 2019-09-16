@@ -12,7 +12,6 @@ buildscript {
 		classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
     }
 }
-import net.minecraftforge.gradle.common.task.SignJar
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.matthewprenger.cursegradle'
@@ -65,7 +64,7 @@ task signJar(type: SignJar) {
     outputFile = jar.archivePath
 }
 
-/*curseforge {
+curseforge {
 	apiKey = project.findProperty("curseforge_key")
 	project {
 		id = "311347"
@@ -75,8 +74,8 @@ task signJar(type: SignJar) {
 
 		}
 	}
-}*/
+}
 
 build.dependsOn signJar
 tasks.build.dependsOn signJar
-//tasks.curseforge.dependsOn build
+tasks.curseforge.dependsOn build

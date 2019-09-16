@@ -13,7 +13,7 @@ public class MainEventHandler {
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onBlockPlacement(BlockEvent.PlaceEvent event) {
 		if (Config.enablePerChunkLimit) {
-			if (event.blockSnapshot.getTileEntity() != null) {
+			if (event.blockSnapshot.getCurrentBlock().getBlock().hasTileEntity()) {
 				if (!Arrays.asList(Config.tileEntityBlockList).contains(event.blockSnapshot.blockIdentifier.toString())) {
 					if (event.world.getChunkFromBlockCoords(event.pos).getTileEntityMap().size() > Config.perChunkLimit) {
 						event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Sorry, Tile entity limit per chunk has been reached!"));
@@ -23,7 +23,7 @@ public class MainEventHandler {
 			}
 		}
 		if (Config.enablePerChunkWorld) {
-			if (event.blockSnapshot.getTileEntity() != null) {
+			if (event.blockSnapshot.getCurrentBlock().getBlock().hasTileEntity()) {
 				if (!Arrays.asList(Config.tileEntityBlockList).contains(event.blockSnapshot.blockIdentifier.toString())) {
 					if (event.world.loadedTileEntityList.size() > Config.perChunkWorld) {
 						event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Sorry, Tile entity limit per world has been reached!"));
